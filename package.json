@@ -1,7 +1,7 @@
 {
     "name": "waifulabs",
     "version": "0.0.1",
-    "description": "",
+    "description": "Unofficial wrapper for WaifuLabs",
     "main": "index.js",
     "scripts": {
         "test": "node library.test.js"
@@ -14,5 +14,12 @@
     "typings": "./typings/index.d.ts",
     "devDependencies": {
         "terminal-image": "^1.1.0"
-    }
+    },
+    "repository": {
+        "url": "git+https://github.com/SpeckyYT/waifulabs.git"
+    },
+    "bugs": {
+        "url": "https://github.com/SpeckyYT/waifulabs/issues"
+    },
+    "homepage": "https://github.com/SpeckyYT/SpeckyBot#readme"
 }
