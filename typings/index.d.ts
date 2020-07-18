@@ -1,32 +1,28 @@
 declare class WaifuLabs {
-    constructor():WaifuLabs;
-    generateWaifus():Promise<WaifuLabs.Waifus>;
-    generateBigWaifu(data:WaifuLabs.Waifu|WaifuLabs.Seeds):Promise<WaifuLabs.Waifu>
-    generateProduct(data:WaifuLabs.Waifu|WaifuLabs.Seeds, product:"PILLOW"|"POSTER"):Promise<WaifuLabs.Waifu>
+    constructor();
+    generateWaifus():Promise<Waifus>;
+    generateBigWaifu(data:Waifu|Seeds):Promise<Waifu>;
+    generateProduct(data:Waifu|Seeds, product:"PILLOW"|"POSTER"):Promise<Waifu>;
 }
 
-declare namespace WaifuLabs {
-    export interface Seeds {
-        [
-            seed:Number, seed:Number, seed:Number, seed:Number,
-            seed:Number, seed:Number, seed:Number, seed:Number,
-            seed:Number, seed:Number, seed:Number, seed:Number,
-            seed:Number, seed:Number, seed:Number, seed:Number,
-            seed:Number, color:Array<Number>
-        ]
-    }
-    export interface Waifu {
-        image: String;
-        seeds: Array<Number|Array<Number>>;
-    }
-    export interface Waifus {
-        [
-            WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu,
-            WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu,
-            WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu,
-            WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu, WaifuLabs:Waifu
-        ]
-    }
+type Seeds = [
+    Number, Number, Number, Number,
+    Number, Number, Number, Number,
+    Number, Number, Number, Number,
+    Number, Number, Number, Number,
+    Number, Array<Number>
+]
+
+type Waifu = {
+    image: String;
+    seeds: Seeds;
 }
+
+type Waifus = [
+    Waifu, Waifu, Waifu, Waifu,
+    Waifu, Waifu, Waifu, Waifu,
+    Waifu, Waifu, Waifu, Waifu,
+    Waifu, Waifu, Waifu, Waifu
+]
 
 export = WaifuLabs
