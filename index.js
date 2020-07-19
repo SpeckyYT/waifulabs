@@ -1,9 +1,11 @@
 const fetch = require('node-fetch');
 
 const baseURL = "https://api.waifulabs.com/";
+const errorUnex = "Unexpected Error occurred (parameters may be wrong)";
+const errorSeeds = "No valid Waifu or Seeds provided"
 
 async function fetchWaifuLabs(endpoint, data){
-    return await (await fetch(baseURL + endpoint, {
+    return (await fetch(baseURL + endpoint, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -14,32 +16,29 @@ async function fetchWaifuLabs(endpoint, data){
 
 class WaifuLabs {
     constructor(){
-        this.generateWaifus = async (data, step = 0) => {
-            let object = {}
-            object.step = isNaN(step) && Math.max(0, Math.min(3, step)) == step ? 0 : step;
-            if(object.step > 0){
-                object.currentGirl = data.seeds || data
-            }
-            return (await fetchWaifuLabs('generate', object)).newGirls;
+        this.generateWaifus = async (data, step) => {
+            let object = {};
+            object.step = Math.max(0, Math.min(3, step || 0));
+            if(object.step > 0) object.currentGirl = data.seeds || data;
+            return fetchWaifuLabs('generate', object)
+            .then(r => r.newGirls)
+            .catch(() => new Error(errorUnex));
         };
-
         this.generateBigWaifu = async (data) => {
             const seeds = data.seeds || data;
-
-            const image = (await fetchWaifuLabs('generate_big', {currentGirl: seeds})).girl;
-
-            return {image: image, seeds: seeds} 
+            if(!seeds) throw new Error(errorSeeds);
+            return fetchWaifuLabs('generate_big', {currentGirl:seeds})
+            .then(r => Object({image:r.girl,seeds:seeds}))
+            .catch(() => new Error(errorUnex));
         };
-
         this.generateProduct = async (data, product) => {
             const seeds = data.seeds || data;
-
+            if(!seeds) throw new Error(errorSeeds);
             let _product = (typeof product == 'string' ? product : '').toUpperCase();
             if(!['PILLOW','POSTER'].includes(_product)) _product = 'POSTER';
-
-            const image = (await fetchWaifuLabs('generate_preview', {currentGirl: seeds, product: _product})).girl;
-
-            return {image: image, seeds: seeds} 
+            return fetchWaifuLabs('generate_preview', {currentGirl:seeds,product:_product})
+            .then(r => Object({image:r.girl,seeds:seeds}))
+            .catch(() => new Error(errorUnex));
         };
     }
 }
