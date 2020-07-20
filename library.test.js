@@ -11,9 +11,9 @@ waifulabs.generateWaifus()
     Promise.all([
         waifulabs.generateBigWaifu(normalWaifu),
         waifulabs.generateProduct(normalWaifu, "PILLOW"),
-        draw(normalWaifu.image),
-        console.log("\nBIG WAIFU\n")
+        draw(normalWaifu.image)
     ]).then(async ([bigWaifu, productWaifu]) => {
+        console.log("\nBIG WAIFU\n")
         await draw(bigWaifu.image);
         console.log("\nPRODUCT WAIFU\n");
         await draw(productWaifu.image);

@@ -1,18 +1,6 @@
-const fetch = require('node-fetch');
-
-const baseURL = "https://api.waifulabs.com/";
+const fetchWaifuLabs = require('./fetch');
 const errorUnex = "Unexpected Error occurred (parameters may be wrong)";
-const errorSeeds = "No valid Waifu or Seeds provided"
-
-async function fetchWaifuLabs(endpoint, data){
-    return (await fetch(baseURL + endpoint, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        },
-    })).json();
-}
+const errorSeeds = "No valid Waifu or Seeds provided";
 
 class WaifuLabs {
     constructor(){
