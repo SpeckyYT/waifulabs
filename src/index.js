@@ -1,4 +1,5 @@
 const fetch = require('./fetch');
+const isSeed = require('./isValidSeed');
 const errorUnex = "Unexpected Error occurred (parameters may be wrong)";
 const errorSeeds = "No valid Waifu or Seeds provided";
 
@@ -14,14 +15,14 @@ class WaifuLabs {
         };
         this.generateBigWaifu = async (data) => {
             const seeds = data.seeds || data;
-            if(!seeds) throw new Error(errorSeeds);
+            if(!isSeed(seeds)) throw new Error(errorSeeds);
             return fetch('generate_big', {currentGirl:seeds})
             .then(r => Object({image:r.girl,seeds:seeds}))
             .catch(() => new Error(errorUnex));
         };
         this.generateProduct = async (data, product) => {
             const seeds = data.seeds || data;
-            if(!seeds) throw new Error(errorSeeds);
+            if(!isSeed(seeds)) throw new Error(errorSeeds);
             let _product = (typeof product == 'string' ? product : '').toUpperCase();
             if(!['PILLOW','POSTER'].includes(_product)) _product = 'POSTER';
             return fetch('generate_preview', {currentGirl:seeds,product:_product})
