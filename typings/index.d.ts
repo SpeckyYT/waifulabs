@@ -10,7 +10,7 @@ type Seeds = [
     Number, Number, Number, Number,
     Number, Number, Number, Number,
     Number, Number, Number, Number,
-    Number, Array<Number>
+    Number, [Number, Number, Number]
 ];
 type Waifu = {
     image: String;
