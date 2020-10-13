@@ -1,5 +1,4 @@
-declare class WaifuLabs {
-    constructor();
+type WaifuLabs = {
     generateWaifus():Promise<Waifus>;
     generateWaifus(data: Waifu|Seeds, step: 0|1|2|3):Promise<Waifus>;
     generateBigWaifu(data: Waifu|Seeds):Promise<Waifu>;

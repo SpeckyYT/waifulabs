@@ -81,8 +81,7 @@ waifulabs.generateWaifus()
 ### Get Big and Product Waifu Image
 
 ```js
-const client = require('waifulabs');
-const waifulabs = new client();
+const waifulabs = require('waifulabs');
 
 const fs = require('fs');
 

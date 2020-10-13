@@ -1,5 +1,4 @@
-const WaifuLabs = require('.');
-const waifulabs = new WaifuLabs();
+const waifulabs = require('.');
 
 async function draw(data){
     console.log(await require('terminal-image').buffer(Buffer.from(data, 'base64')));
