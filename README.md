@@ -9,11 +9,11 @@ npm i --save waifulabs
 ```
 
 ## Methods
-| Function         | Parameters              | Returns                 |
-|------------------|-------------------------|-------------------------|
-| generateWaifus   | Waifu or Seeds, step    | an Array with 16 waifus |
-| generateBigWaifu | Waifu or Seeds          | a Waifu Object          |
-| generateProduct  | Waifu or Seeds, product | a Waifu Object          |
+| Function          | Parameters              | Returns                 |
+|-------------------|-------------------------|-------------------------|
+| .generateWaifus   | Waifu or Seeds, step    | an Array with 16 waifus |
+| .generateBigWaifu | Waifu or Seeds          | a Waifu Object          |
+| .generateProduct  | Waifu or Seeds, product | a Waifu Object          |
 
 ## Waifu Object
 | Property | Description                       |
@@ -28,8 +28,7 @@ npm i --save waifulabs
 ```js
 (async function(){
     // Setup the module
-    const client = require('waifulabs');
-    const waifulabs = new client();
+    const waifulabs = require('waifulabs');
 
     // Get some pretty waifus
     const waifus = await waifulabs.generateWaifus();
@@ -55,8 +54,7 @@ npm i --save waifulabs
 
 ```js
 // Setup the module
-const client = require('waifulabs');
-const waifulabs = new client();
+const waifulabs = require('waifulabs');
 
 // Get some pretty waifus
 waifulabs.generateWaifus()
