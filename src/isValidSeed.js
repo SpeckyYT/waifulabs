@@ -1,17 +1,9 @@
-function checkType(array, ...types){
-    return types.every((t,i) => typeof (array)[i] == t);
-}
-
 module.exports = (seeds) => {
     if(!Array.isArray(seeds)) return false;
-    if(seeds.length !== 18) return false;
-    
-    if(checkType(seeds, ...Array(17).fill("number"), "object")){
-        if(Array.isArray(seeds[17])){
-            if(seeds[17].length !== 3) return false;
-            return checkType(seeds[17], ...Array(3).fill("number"));
-        }else{
-            return false;
-        }
-    }
+
+    if(seeds.length < 17) return false;
+
+    if(seeds.slice(0,16).every(seed => typeof seed == 'number')) return true;
+
+    return false;
 }
