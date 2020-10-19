@@ -23,7 +23,7 @@ const WaifuLabs = {
         const seeds = data.seeds || data;
         if(!isSeed(seeds)) throw new Error(errorSeeds);
         let _product = (typeof product == 'string' ? product : '').toUpperCase();
-        if(!['PILLOW','POSTER'].includes(_product)) _product = 'POSTER';
+        if(!['PILLOW','POSTER'].includes(_product)) _product = 'PILLOW';
         return fetch('generate_preview', {currentGirl:seeds,product:_product})
         .then(r => Object({image:r.girl,seeds:seeds}))
         .catch(() => new Error(errorUnex));
