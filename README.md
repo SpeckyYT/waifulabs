@@ -23,8 +23,6 @@ npm i --save waifulabs
 
 ## Examples
 
-### Async/Await
-
 ```js
 (async function(){
     // Setup the module
@@ -50,62 +48,38 @@ npm i --save waifulabs
 })()
 ```
 
-### Promises
-
 ```js
-// Setup the module
-const waifulabs = require('waifulabs');
+(async function(){
+    // Setup the module
+    const waifulabs = require('waifulabs');
 
-// Get some pretty waifus
-waifulabs.generateWaifus()
-.then(function(waifus){
+    // Get some pretty waifus
+    const waifus = await waifulabs.generateWaifus();
+
     // Extract one waifu
     const waifu = waifus[0];
 
-    // Extract the image of the waifu
-    const imageData = waifu.image;
+    // Get the other waifu images
+    const big = await waifulabs.generateBigWaifu(waifu);
+    const pillow = await waifulabs.generateProduct(waifu, "PILLOW");
+    const poster = await waifulabs.generateProduct(waifu, "POSTER");
 
-    // Turn the Base64 image into a Buffer
-    const image = Buffer.from(imageData, 'base64');
+    function save(waifu,name){
+        // Extract the image of the waifu
+        const imageData = waifu.image;
 
-    // Use FS module and write the image to a file
-    const fs = require('fs');
-    fs.writeFile('waifu.png', image, console.error);
+        // Turn the Base64 image into a Buffer
+        const image = Buffer.from(imageData, 'base64');
+
+        // Use FS module and write the image to a file
+        const fs = require('fs');
+        fs.writeFileSync(`${name}.png`, image);
+    }
+    
+    save(big,'big');
+    save(pillow,'pillow');
+    save(poster,'poster');
 
     /* Done! */
-})
-```
-
-### Get Big and Product Waifu Image
-
-```js
-const waifulabs = require('waifulabs');
-
-const fs = require('fs');
-
-waifulabs.generateWaifus()
-.then(function(waifus){
-    const waifu = waifus[0];
-
-    const image = Buffer.from(waifu.image, 'base64');
-    fs.writeFile('waifu.png', image, console.error);
-
-    return waifulabs.generateBigWaifu(waifu);
-})
-.then(function(waifu){
-    const image = Buffer.from(waifu.image, 'base64');
-    fs.writeFile('waifuBig.png', image, console.error);
-
-    return waifulabs.generateProduct(waifu, "PILLOW");
-})
-.then(function(waifu){
-    const image = Buffer.from(waifu.image, 'base64');
-    fs.writeFile('waifuProductPillow.png', image, console.error);
-
-    return waifulabs.generateProduct(waifu, "POSTER");
-})
-.then(function(waifu){
-    const image = Buffer.from(waifu.image, 'base64');
-    fs.writeFile('waifuProductPoster.png', image, console.error);
-})
+})()
 ```
