@@ -9,11 +9,11 @@ npm i --save waifulabs
 ```
 
 ## Methods
-| Function          | Parameters              | Returns                 |
-|-------------------|-------------------------|-------------------------|
-| .generateWaifus   | Waifu or Seeds, step    | an Array with 16 waifus |
-| .generateBigWaifu | Waifu or Seeds          | a Waifu Object          |
-| .generateProduct  | Waifu or Seeds, product | a Waifu Object          |
+| Property         | Parameters                | Returns                   |
+|------------------|---------------------------|---------------------------|
+| generateWaifus   | [Waifu or Seeds, step]    | Promise[Array[16 Waifus]] |
+| generateBigWaifu | Waifu or Seeds            | Promise[Waifu]            |
+| generateProduct  | Waifu or Seeds[, product] | Promise[Waifu]            |
 
 ## Waifu Object
 | Property | Description                       |
