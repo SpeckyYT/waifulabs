@@ -7,7 +7,7 @@ const errorSeeds = "No valid Waifu or Seeds provided";
 const WaifuLabs = {
     async generateWaifus (data, step) {
 
-        let object = {};
+        const object = {};
 
         object.step = Math.max(0, Math.min(3, step)) || 0;
 
