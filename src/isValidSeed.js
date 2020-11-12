@@ -3,7 +3,7 @@ module.exports = (seeds) => {
 
     if(seeds.length < 17) return false;
 
-    if(seeds.slice(0,16).every(seed => typeof seed == 'number')) return true;
+    if(seeds.slice(0,16).every(seed => !isNaN(seed))) return true;
 
     return false;
 }
