@@ -1,11 +1,18 @@
 const fetch = require('node-fetch');
-
-const protocolURL = 'https://';
-const baseURL = "api.waifulabs.com";
+const url = require('url');
 
 module.exports = (endpoint, data) => 
-    fetch(`${protocolURL}${baseURL}/${endpoint}`, {
-        method: 'POST',
-        body: JSON.stringify(data)
-    })
+    fetch(
+        url.format(
+            {
+                protocol: 'https',
+                host: 'api.waifulabs.com',
+                pathname: endpoint
+            }
+        ),
+        {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }
+    )
     .then(resp => resp.json());
