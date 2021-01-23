@@ -50,7 +50,14 @@ const WaifuLabs = {
     isValidSeed (seeds) {
         if(!Array.isArray(seeds)) return false;
         if(seeds.length < 17) return false;
-        if(!seeds.slice(0,16).some(seed => isNaN(seed) || seed < 0 || !Number.isInteger(seed))) return true;
+        if(
+            !seeds.slice(0,16).some(seed =>
+                isNaN(seed) ||
+                !Number.isInteger(seed) ||
+                seed < 0 ||
+                seed > 4294967295
+            )
+        ) return true;
         return false;
     }
     
