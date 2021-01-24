@@ -14,6 +14,7 @@ npm i --save waifulabs
 | generateWaifus   | [Waifu or Seeds, step]    | Promise[Array[16 Waifus]] |
 | generateBigWaifu | Waifu or Seeds            | Promise[Waifu]            |
 | generateProduct  | Waifu or Seeds[, product] | Promise[Waifu]            |
+| isValidSeed      | any                       | Boolean                   |
 
 ## Waifu Object
 | Property | Description                       |
