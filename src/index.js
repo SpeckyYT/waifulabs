@@ -8,7 +8,7 @@ const WaifuLabs = {
 
         const object = {};
 
-        object.step = Math.max(0, Math.min(3, step)) || 0;
+        object.step = Math.max(0, Math.min(3, Math.floor(step))) || 0;
 
         if(object.step > 0){
             object.currentGirl = data.seeds || data
@@ -55,7 +55,7 @@ const WaifuLabs = {
                 isNaN(seed) ||
                 !Number.isInteger(seed) ||
                 seed < 0 ||
-                seed > 4294967295
+                seed > 2**32-1
             )
         ) return true;
         return false;
