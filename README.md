@@ -21,12 +21,12 @@ npm i --save waifulabs
 
 This method will request the WaifuLabs API to generate 16 waifus inspired by the original one.
 The resolution of images of the waifus obtained by this method will be 200x200.
-The "step" parameter, is a number from 0 to 3 which defines what you want to change of a specific waifu.
+The "step" parameter, is a number from 0 to 3 or a string which defines what you want to change of a specific waifu.
 ```
-0 => base
-1 => color
-2 => details
-3 => pose
+0 / base
+1 / color
+2 / details
+3 / pose
 ```
 Note: Step 0 ignores the input waifu.
 Note: This method doesn't obtain anything directly related to the input seed.
