@@ -19,7 +19,10 @@ const WaifuLabs = {
             if(!isValidSeed(object.currentGirl)) throw new TypeError(errorSeeds);
         }
 
-        return fetch('generate', object)
+        return fetch(
+            'generate',
+            object
+        )
         .then(r => r.newGirls)
         .catch(() => {throw new Error(errorUnex)});
     },
@@ -28,7 +31,12 @@ const WaifuLabs = {
         const seeds = resolveSeeds(data);
         if(!isValidSeed(seeds)) throw new TypeError(errorSeeds);
 
-        return fetch('generate_big', {currentGirl:seeds})
+        return fetch(
+            'generate_big',
+            {
+                currentGirl:seeds,
+            }
+        )
         .then(r => ({image:r.girl,seeds:seeds}))
         .catch(() => {throw new Error(errorUnex)});
     },
@@ -39,7 +47,13 @@ const WaifuLabs = {
 
         const _product = resolveProduct(product);
 
-        return fetch('generate_preview', {currentGirl:seeds,product:_product})
+        return fetch(
+            'generate_preview',
+            {
+                currentGirl:seeds,
+                product:_product,
+            }
+        )
         .then(r => ({image:r.girl,seeds:seeds}))
         .catch(() => {throw new Error(errorUnex)});
     },
