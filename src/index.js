@@ -9,7 +9,7 @@ const WaifuLabs = {
             step: resolveStep(step)
         };
         if(object.step > 0){
-            object.currentGirl = resolveWaifu(data);
+            object.currentGirl = resolveSeeds(data);
             if(!this.isValidSeed(object.currentGirl)) throw new TypeError(errorSeeds);
         }
 
@@ -19,7 +19,7 @@ const WaifuLabs = {
     },
 
     async generateBigWaifu (data) {
-        const seeds = resolveWaifu(data);
+        const seeds = resolveSeeds(data);
         if(!this.isValidSeed(seeds)) throw new TypeError(errorSeeds);
 
         return fetch('generate_big', {currentGirl:seeds})
@@ -28,7 +28,7 @@ const WaifuLabs = {
     },
 
     async generateProduct (data, product) {
-        const seeds = resolveWaifu(data);
+        const seeds = resolveSeeds(data);
         if(!this.isValidSeed(seeds)) throw new TypeError(errorSeeds);
 
         const _product = resolveProduct(product);
@@ -48,13 +48,13 @@ const WaifuLabs = {
             if(seed >= 2**32) return false;
             return true;
         });
-    }
+    },
 }
 
-function resolveWaifu (waifu) {
+function resolveSeeds (waifu) {
     if(!waifu) return;
     if(Array.isArray(waifu)) return waifu;
-    if(typeof waifu == 'object') return resolveWaifu(waifu.seeds); 
+    if(typeof waifu == 'object') return resolveSeeds(waifu.seeds); 
 }
 
 const steps = {
