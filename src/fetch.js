@@ -1,6 +1,8 @@
 const fetch = require('node-fetch');
 const url = require('url');
 
+const errorUnex = "Unexpected Error occurred (parameters may be wrong)";
+
 module.exports = (endpoint, data) => 
     fetch(
         url.format(
@@ -15,4 +17,5 @@ module.exports = (endpoint, data) =>
             body: JSON.stringify(data)
         }
     )
-    .then(resp => resp.json());
+    .then(resp => resp.json())
+    .catch(() => {throw new Error(errorUnex)});

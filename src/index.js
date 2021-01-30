@@ -7,29 +7,30 @@ const {
     isValidSeed,
 } = require('./util');
 
-const errorUnex = "Unexpected Error occurred (parameters may be wrong)";
-
 const WaifuLabs = {
     async generateWaifus (data, step) {
-        const object = {
-            step: resolveStep(step)
-        };
-        if(object.step > 0) object.currentGirl = handleSeeds(data);
-        return fetch('generate', object)
-        .then(r => r.newGirls.map(w => new this.Waifu(w)))
-        .catch(() => {throw new Error(errorUnex)});
+        const resolvedStep = resolveStep(step);
+        return fetch('generate',
+            {
+                step: resolvedStep,
+                currentGirl: resolvedStep > 0 && handleSeeds(data),
+            }
+        ).then(r => r.newGirls.map(w => new this.Waifu(w)));
     },
     async generateBigWaifu (data) {
-        const seeds = handleSeeds(data);
-        return fetch('generate_big', { currentGirl:seeds })
-        .then(r => new this.Waifu(r))
-        .catch(() => {throw new Error(errorUnex)});
+        return fetch('generate_big',
+            {
+                currentGirl: handleSeeds(data),
+            }
+        ).then(r => new this.Waifu(r));
     },
     async generateProduct (data, product) {
-        const seeds = handleSeeds(data);
-        return fetch('generate_preview', { currentGirl:seeds, product:resolveProduct(product) })
-        .then(r => new this.Waifu(r))
-        .catch(() => {throw new Error(errorUnex)});
+        return fetch('generate_preview',
+            {
+                currentGirl: handleSeeds(data),
+                product: resolveProduct(product),
+            }
+        ).then(r => new this.Waifu(r));
     },
     Waifu: class Waifu {
         constructor(waifu = {}){
