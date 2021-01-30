@@ -1,8 +1,19 @@
+const errorSeeds = "No valid Waifu or Seeds provided";
+
 function resolveSeeds (waifu) {
     if(!waifu) return;
-    if(Array.isArray(waifu)) return waifu;
-    if(typeof waifu == 'object') return resolveSeeds(waifu.seeds); 
+    if(isValidSeed(waifu)) return waifu;
+    if(typeof waifu == 'object')
+        for(const value of Object.values(waifu))
+            if(resolveSeeds(value)) return value; 
+    return null;
 };
+
+function handleSeeds (waifu) {
+    const resolved = resolveSeeds(waifu);
+    if(!resolved) throw new TypeError(errorSeeds);
+    else return resolved;
+}
 
 const steps = {
     base: 0,
@@ -47,6 +58,7 @@ function isValidSeed (seeds) {
 
 module.exports = {
     resolveSeeds,
+    handleSeeds,
     steps,
     resolveStep,
     products,
