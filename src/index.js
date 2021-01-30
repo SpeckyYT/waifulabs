@@ -33,8 +33,8 @@ const WaifuLabs = {
     },
     Waifu: class Waifu {
         constructor(waifu = {}){
-            this.seeds = waifu.seeds;
-            this.image = waifu.image || waifu.girl;
+            this.seeds = waifu.seeds || Array(17).fill(0);
+            this.image = waifu.image || waifu.girl || '';
         }
     },
     isValidSeed,
