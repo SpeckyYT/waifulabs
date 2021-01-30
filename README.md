@@ -55,11 +55,11 @@ The following criteria have to be met for a seed to be valid:
 + Every seed has to be a positive integer from 0 to 2^32-1 (4294967295)
 ```
 
-## Waifu Object
-| Property | Description                       |
-|----------|-----------------------------------|
-| image    | The Waifu Image encoded in Base64 |
-| seeds    | The Seeds for that specific Waifu |
+## Waifu Class
+| Property | Type   | Description                       |
+|----------|--------|-----------------------------------|
+| image    | String | The Waifu Image encoded in Base64 |
+| seeds    | Array  | The Seeds for that specific Waifu |
 
 # Examples
 
