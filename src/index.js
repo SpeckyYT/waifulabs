@@ -5,6 +5,7 @@ const {
     resolveStep,
     resolveProduct,
     isValidSeed,
+    randomSeed
 } = require('./util');
 
 const WaifuLabs = {
@@ -39,6 +40,7 @@ const WaifuLabs = {
         }
     },
     isValidSeed,
+    randomSeed,
 }
 
 module.exports = WaifuLabs;

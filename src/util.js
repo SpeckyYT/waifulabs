@@ -56,6 +56,12 @@ function isValidSeed (seeds) {
     });
 };
 
+function randomSeed () {
+    const seeds = [];
+    while(seeds.length < 17) seeds.push(Math.floor(Math.random()*2**32-1));
+    return seeds;
+};
+
 module.exports = {
     resolveSeeds,
     handleSeeds,
@@ -64,4 +70,5 @@ module.exports = {
     products,
     resolveProduct,
     isValidSeed,
-}
+    randomSeed,
+};
